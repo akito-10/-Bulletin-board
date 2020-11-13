@@ -1,0 +1,18 @@
+.auth_switching {
+  cursor: pointer;
+}
+.auth_switching:hover {
+  color: blue;
+}
+
+.auth_forgot_pass {
+  cursor: pointer;
+}
+.auth_forgot_pass:hover {
+  color: blue;
+}
+
+.auth_box {
+  text-align: left;
+  padding-left: 20px;
+}
