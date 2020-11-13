@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Auth.module.css";
+import { auth, provider } from "../firebase/firebase";
 import {
   Avatar,
   Button,
@@ -39,6 +40,9 @@ const Auth: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const signInGoogle = async () => {
+    await auth.signInWithPopup(provider).catch((err) => alert(err.message));
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -107,6 +111,15 @@ const Auth: React.FC = () => {
               </span>
             </Grid>
           </Grid>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={signInGoogle}
+            className={classes.submit}
+          >
+            Sign In with Google
+          </Button>
         </form>
       </div>
     </Container>
