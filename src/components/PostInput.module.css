@@ -1,0 +1,47 @@
+.postInput_form {
+  display: flex;
+}
+
+.postInput_addIcon {
+  cursor: pointer;
+  color: white;
+}
+.postInput_addIconLoaded {
+  cursor: pointer;
+  color: dimgray;
+}
+
+.postInput_hiddenIcon {
+  display: none;
+}
+
+.postInput_sendBtn {
+  background-color: #005fff !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 800 !important;
+  text-transform: inherit !important;
+  border-radius: 30px !important;
+  width: 80px;
+  height: 40px !important;
+  margin-left: 80% !important;
+  outline: none !important;
+  cursor: pointer;
+}
+
+.postInput_sendBtn:hover {
+  opacity: 0.9;
+}
+
+.postInput_sendDisableBtn {
+  background-color: gray !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 900 !important;
+  text-transform: inherit !important;
+  border-radius: 30px !important;
+  width: 80px;
+  height: 40px !important;
+  margin-left: 80% !important;
+  cursor: default;
+}

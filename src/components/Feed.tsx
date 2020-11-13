@@ -1,7 +1,12 @@
 import React from "react";
+import PostInput from "./PostInput";
 
 const Feed: React.FC = () => {
-  return <div>Feed</div>;
+  return (
+    <div>
+      <PostInput />
+    </div>
+  );
 };
 
 export default Feed;
