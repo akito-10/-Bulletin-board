@@ -40,6 +40,15 @@ const Auth: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const signInEmail = async () => {
+    await auth.signInWithEmailAndPassword(email, password);
+  };
+
+  const signUpEmail = async () => {
+    await auth.createUserWithEmailAndPassword(email, password);
+  };
+
   const signInGoogle = async () => {
     await auth.signInWithPopup(provider).catch((err) => alert(err.message));
   };
@@ -91,6 +100,7 @@ const Auth: React.FC = () => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={isLogin ? signInEmail : signUpEmail}
           >
             {isLogin ? "Login" : "Sign In"}
           </Button>
