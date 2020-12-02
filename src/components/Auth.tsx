@@ -247,7 +247,7 @@ const Auth: React.FC = () => {
                   className={styles.auth_forgotPass}
                   onClick={() => setOpenModal(true)}
                 >
-                  Forgot password?
+                  パスワードを忘れた方はこちら
                 </span>
               </Box>
             </Grid>
@@ -256,7 +256,7 @@ const Auth: React.FC = () => {
                 onClick={() => setIsLogin(!isLogin)}
                 className={styles.auth_switching}
               >
-                {isLogin ? "Don't have an account? Sign Up" : "Move to Login"}
+                {isLogin ? "アカウントを新規作成" : "ログイン画面へ"}
               </span>
             </Grid>
           </Grid>
