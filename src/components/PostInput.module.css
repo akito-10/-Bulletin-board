@@ -4,11 +4,11 @@
 
 .postInput_addIcon {
   cursor: pointer;
-  color: white;
+  color: dimgray;
 }
 .postInput_addIconLoaded {
   cursor: pointer;
-  color: dimgray;
+  color: white;
 }
 
 .postInput_hiddenIcon {
@@ -27,6 +27,7 @@
   margin-left: 80% !important;
   outline: none !important;
   cursor: pointer;
+  user-select: none !important;
 }
 
 .postInput_sendBtn:hover {
@@ -43,5 +44,23 @@
   width: 80px;
   height: 40px !important;
   margin-left: 80% !important;
+  outline: none !important;
+  user-select: none !important;
   cursor: default;
+}
+
+.postInput_avatar {
+  display: inline-block;
+  margin: 10px;
+}
+
+@media screen and (max-width: 650px) {
+  .postInput_form {
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+  }
+
+  .postInput_avatar {
+    display: none !important;
+  }
 }
