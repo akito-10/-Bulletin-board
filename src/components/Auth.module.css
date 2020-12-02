@@ -5,11 +5,25 @@
   color: blue;
 }
 
-.auth_forgot_pass {
+.auth_forgotPass {
   cursor: pointer;
 }
-.auth_forgot_pass:hover {
+.auth_forgotPass:hover {
   color: blue;
+}
+
+.signIn_addIcon {
+  cursor: pointer;
+  color: gray;
+}
+.signIn_addIconLoaded {
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+.signIn_hiddenIcon {
+  text-align: center;
+  display: none;
 }
 
 .auth_box {
@@ -17,10 +31,5 @@
   padding-left: 20px;
 }
 
-.mb_sm {
-  margin-bottom: 10px;
-}
-
-.mb_md {
-  margin-bottom: 20px;
+.auth_modal {
 }
