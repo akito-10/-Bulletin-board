@@ -2,3 +2,8 @@
   display: block !important;
   margin: 10px 40px 0 auto !important;
 }
+
+.feed_root {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}

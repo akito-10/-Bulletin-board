@@ -1,0 +1,22 @@
+.post_content {
+  margin: 0 auto;
+  max-width: 600px;
+  display: flex;
+}
+
+.post_text {
+  font-size: 1.2em;
+}
+
+.post_image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post_image > img {
+  object-fit: contain;
+  border-radius: 20px;
+  max-height: 250px;
+  max-width: 100%;
+}
