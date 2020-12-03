@@ -20,3 +20,32 @@
   max-height: 250px;
   max-width: 100%;
 }
+
+.post_commentOpenIcons {
+  display: block !important;
+  margin: 0 auto 0 10px !important;
+  font-size: 1em !important;
+}
+
+.post_comments {
+  padding-top: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.post_commentInput {
+  font-size: 1em;
+  border: 0.5px solid #ccc;
+  outline: none;
+  border-radius: 20px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.post_submitIcon {
+  pointer-events: none;
+  color: #222;
+}
+
+.post_submitIconDisable {
+  pointer-events: none;
+}
