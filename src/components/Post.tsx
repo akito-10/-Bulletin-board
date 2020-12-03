@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Post.module.css";
-import { db } from "../firebase/firebase";
+import { db, storage } from "../firebase/firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import firebase from "firebase/app";
@@ -97,15 +97,11 @@ const Post: React.FC<PROPS> = (props) => {
     <div className={classes.post}>
       <div className={styles.post_content}>
         <div className={classes.topMargin}>
-          <Avatar
-            src={props.avatar}
-            className={classes.rightMargin}
-            onClick={deletePost}
-          />
+          <Avatar src={props.avatar} className={classes.rightMargin} />
         </div>
         <div>
-          <div className={styles.post_header}>
-            <h3>
+          <div>
+            <h3 className={styles.post_userInfo}>
               <span className={classes.rightMargin}>@{props.username}</span>
               <span>
                 {new Date(props.timestamp?.toDate()).toLocaleString()}
