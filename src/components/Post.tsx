@@ -8,6 +8,8 @@ import { Avatar, IconButton, makeStyles } from "@material-ui/core";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import SendIcon from "@material-ui/icons/Send";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 
 interface PROPS {
   postId: string;
@@ -59,6 +61,7 @@ const Post: React.FC<PROPS> = (props) => {
       username: "",
     },
   ]);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     const unSub = db
@@ -108,7 +111,7 @@ const Post: React.FC<PROPS> = (props) => {
               </span>
             </h3>
           </div>
-          <div>
+          <div className={styles.post_textContain}>
             <p className={styles.post_text}>{props.text}</p>
           </div>
           <div>
@@ -117,13 +120,21 @@ const Post: React.FC<PROPS> = (props) => {
                 <img src={props.image} alt="投稿画像" />
               </div>
             )}
-            <IconButton
-              className={styles.post_commentOpenIcons}
-              onClick={() => setOpenComment(!openComment)}
-            >
-              {openComment ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
-              <p>{`${comments.length}件の返信`}</p>
-            </IconButton>
+            <div className={styles.post_iconsContain}>
+              <IconButton
+                className={styles.post_commentOpenIcons}
+                onClick={() => setOpenComment(!openComment)}
+              >
+                {openComment ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+                <p>{`${comments.length}件の返信`}</p>
+              </IconButton>
+              <IconButton
+                onClick={() => setIsFavorite(!isFavorite)}
+                className={styles.post_favoriteIcon}
+              >
+                {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              </IconButton>
+            </div>
             {openComment && (
               <>
                 {comments.map((com) => (
