@@ -65,6 +65,7 @@ const PostInput: React.FC = () => {
             .getDownloadURL()
             .then(async (url) => {
               await db.collection("posts").add({
+                userId: user.uid,
                 avatar: user.photoUrl,
                 image: url,
                 text: postText,
@@ -76,6 +77,7 @@ const PostInput: React.FC = () => {
       );
     } else {
       db.collection("posts").add({
+        userId: user.uid,
         avatar: user.photoUrl,
         image: "",
         text: postText,

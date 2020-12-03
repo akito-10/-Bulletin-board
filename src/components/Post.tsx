@@ -11,6 +11,7 @@ import SendIcon from "@material-ui/icons/Send";
 
 interface PROPS {
   postId: string;
+  userId: string;
   avatar: string;
   image: string;
   text: string;
@@ -49,7 +50,6 @@ const Post: React.FC<PROPS> = (props) => {
   const user = useSelector(selectUser);
   const [comment, setComment] = useState("");
   const [openComment, setOpenComment] = useState(false);
-  const [commentCount, setCommentCount] = useState<number>();
   const [comments, setComments] = useState<COMMENT[]>([
     {
       id: "",
@@ -97,7 +97,11 @@ const Post: React.FC<PROPS> = (props) => {
     <div className={classes.post}>
       <div className={styles.post_content}>
         <div className={classes.topMargin}>
-          <Avatar src={props.avatar} className={classes.rightMargin} />
+          <Avatar
+            src={props.avatar}
+            className={classes.rightMargin}
+            onClick={deletePost}
+          />
         </div>
         <div>
           <div className={styles.post_header}>
@@ -122,7 +126,7 @@ const Post: React.FC<PROPS> = (props) => {
               onClick={() => setOpenComment(!openComment)}
             >
               {openComment ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
-              <p>{`1件の返信`}</p>
+              <p>{`${comments.length}件の返信`}</p>
             </IconButton>
             {openComment && (
               <>
@@ -138,7 +142,7 @@ const Post: React.FC<PROPS> = (props) => {
                 ))}
               </>
             )}
-            <form onSubmit={newComment}>
+            <form onSubmit={newComment} className={classes.topMargin}>
               <input
                 className={styles.post_commentInput}
                 type="text"

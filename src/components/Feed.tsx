@@ -9,7 +9,8 @@ import Post from "./Post";
 const Feed: React.FC = () => {
   const [posts, setPost] = useState([
     {
-      id: "",
+      postId: "",
+      userId: "",
       avatar: "",
       image: "",
       text: "",
@@ -25,7 +26,8 @@ const Feed: React.FC = () => {
       .onSnapshot((snapshot) => {
         setPost(
           snapshot.docs.map((doc) => ({
-            id: doc.id,
+            postId: doc.id,
+            userId: doc.data().userId,
             avatar: doc.data().avatar,
             image: doc.data().image,
             text: doc.data().text,
@@ -48,12 +50,13 @@ const Feed: React.FC = () => {
         <ExitToAppIcon />
       </IconButton>
       <PostInput />
-      {posts[0]?.id && (
+      {posts[0]?.postId && (
         <>
           {posts.map((post) => (
             <Post
-              key={post.id}
-              postId={post.id}
+              key={post.postId}
+              postId={post.postId}
+              userId={post.userId}
               avatar={post.avatar}
               image={post.image}
               text={post.text}
