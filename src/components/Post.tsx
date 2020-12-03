@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
   post: {
     margin: theme.spacing(3, 5),
   },
-  smallRight: {
+  rightMargin: {
     marginRight: theme.spacing(3),
   },
-  smallTop: {
+  topMargin: {
     marginTop: theme.spacing(3),
   },
 }));
@@ -30,13 +30,13 @@ const Post: React.FC<PROPS> = (props) => {
   return (
     <div className={classes.post}>
       <div className={styles.post_content}>
-        <div className={classes.smallTop}>
-          <Avatar src={props.avatar} className={classes.smallRight} />
+        <div className={classes.topMargin}>
+          <Avatar src={props.avatar} className={classes.rightMargin} />
         </div>
         <div>
           <div className={styles.post_header}>
             <h3>
-              <span className={classes.smallRight}>@{props.username}</span>
+              <span className={classes.rightMargin}>@{props.username}</span>
               <span>
                 {new Date(props.timestamp?.toDate()).toLocaleString()}
               </span>
