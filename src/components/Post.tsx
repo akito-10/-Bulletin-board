@@ -4,12 +4,13 @@ import { db, storage } from "../firebase/firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import firebase from "firebase/app";
-import { Avatar, IconButton, makeStyles } from "@material-ui/core";
+import { Avatar, IconButton, makeStyles, Modal } from "@material-ui/core";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import SendIcon from "@material-ui/icons/Send";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 
 interface PROPS {
   postId: string;
@@ -29,9 +30,36 @@ interface COMMENT {
   username: string;
 }
 
+interface FAVORITE {
+  id: string;
+  avatar: string;
+  timestamp: any;
+  username: string;
+}
+
+const getModalStyles = () => {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${left}%, -${top}%)`,
+  };
+};
+
 const useStyles = makeStyles((theme) => ({
   post: {
     margin: theme.spacing(3, 5),
+  },
+  modal: {
+    outline: "none",
+    position: "absolute",
+    backgroundColor: "#fff",
+    width: 400,
+    textAlign: "center",
+    borderRadius: 10,
+    padding: theme.spacing(3, 4),
   },
   rightMargin: {
     marginRight: theme.spacing(3),
@@ -62,6 +90,15 @@ const Post: React.FC<PROPS> = (props) => {
     },
   ]);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [favoriteUsers, setFavoriteUser] = useState<FAVORITE[]>([
+    {
+      id: "",
+      avatar: "",
+      timestamp: null,
+      username: "",
+    },
+  ]);
 
   useEffect(() => {
     const unSub = db
@@ -96,13 +133,42 @@ const Post: React.FC<PROPS> = (props) => {
     setComment("");
   };
 
+  const sendUserFavorite = () => {
+    setIsFavorite(!isFavorite);
+    if (!isFavorite) {
+      db.collection("posts").doc(props.postId).collection("favorites").add({
+        avatar: user.photoUrl,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        username: user.displayName,
+      });
+    }
+  };
+
+  const getUserFavorite = () => {
+    setOpenModal(true);
+    db.collection("posts")
+      .doc(props.postId)
+      .collection("favorites")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setFavoriteUser(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            avatar: doc.data().avatar,
+            timestamp: doc.data().timestamp,
+            username: doc.data().username,
+          }))
+        );
+      });
+  };
+
   return (
     <div className={classes.post}>
       <div className={styles.post_content}>
         <div className={classes.topMargin}>
           <Avatar src={props.avatar} className={classes.rightMargin} />
         </div>
-        <div>
+        <div className={styles.post_main}>
           <div>
             <h3 className={styles.post_userInfo}>
               <span className={classes.rightMargin}>@{props.username}</span>
@@ -128,12 +194,17 @@ const Post: React.FC<PROPS> = (props) => {
                 {openComment ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
                 <p>{`${comments.length}件の返信`}</p>
               </IconButton>
-              <IconButton
-                onClick={() => setIsFavorite(!isFavorite)}
-                className={styles.post_favoriteIcon}
-              >
-                {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-              </IconButton>
+              <div className={styles.post_options}>
+                <IconButton
+                  onClick={sendUserFavorite}
+                  className={styles.post_favoriteIcon}
+                >
+                  {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                </IconButton>
+                <IconButton onClick={getUserFavorite}>
+                  <MenuOpenIcon />
+                </IconButton>
+              </div>
             </div>
             {openComment && (
               <>
@@ -172,6 +243,24 @@ const Post: React.FC<PROPS> = (props) => {
             </form>
           </div>
         </div>
+        <Modal
+          open={openModal}
+          className={styles.post_modal}
+          onClose={() => setOpenModal(false)}
+        >
+          <div style={getModalStyles()} className={classes.modal}>
+            <p>いいねしたユーザー</p>
+            {favoriteUsers.map((favUser) => (
+              <div className={styles.post_favoriteUsers} key={favUser.id}>
+                <Avatar src={favUser.avatar} className={classes.small} />
+                <span>@{favUser.username}</span>
+                <span>
+                  {new Date(favUser.timestamp?.toDate()).toLocaleString()}
+                </span>
+              </div>
+            ))}
+          </div>
+        </Modal>
       </div>
     </div>
   );
