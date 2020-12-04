@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Post.module.css";
-import { db, storage } from "../firebase/firebase";
+import { db } from "../firebase/firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import firebase from "firebase/app";
@@ -230,14 +230,10 @@ const Post: React.FC<PROPS> = (props) => {
                   setComment(e.target.value)
                 }
               />
-              <IconButton type="submit">
+              <IconButton type="submit" disabled={!comment}>
                 <SendIcon
                   fontSize="small"
-                  className={
-                    comment
-                      ? styles.post_submitIcon
-                      : styles.post_submitIconDisable
-                  }
+                  className={comment && styles.post_submitIcon}
                 />
               </IconButton>
             </form>
