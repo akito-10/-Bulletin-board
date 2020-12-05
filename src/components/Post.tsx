@@ -11,7 +11,6 @@ import SendIcon from "@material-ui/icons/Send";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
-import { style } from "@material-ui/system";
 
 interface PROPS {
   postId: string;
@@ -58,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     backgroundColor: "#fff",
     width: 400,
+    maxWidth: "90%",
     textAlign: "center",
     borderRadius: 10,
     padding: theme.spacing(3, 4),
@@ -251,7 +251,9 @@ const Post: React.FC<PROPS> = (props) => {
               {favoriteUsers.map((favUser) => (
                 <div className={styles.post_favoriteUsers} key={favUser.id}>
                   <Avatar src={favUser.avatar} className={classes.small} />
-                  <span>@{favUser.username}</span>
+                  <span className={classes.rightMargin}>
+                    @{favUser.username}
+                  </span>
                   <span>
                     {new Date(favUser.timestamp?.toDate()).toLocaleString()}
                   </span>
