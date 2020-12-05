@@ -72,7 +72,8 @@
   color: #222;
 }
 
-.post_modal {
+.post_usersArea {
+  height: 150px;
   overflow-y: scroll;
 }
 

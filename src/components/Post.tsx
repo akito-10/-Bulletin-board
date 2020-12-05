@@ -11,6 +11,7 @@ import SendIcon from "@material-ui/icons/Send";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
+import { style } from "@material-ui/system";
 
 interface PROPS {
   postId: string;
@@ -246,15 +247,17 @@ const Post: React.FC<PROPS> = (props) => {
         >
           <div style={getModalStyles()} className={classes.modal}>
             <p>いいねしたユーザー</p>
-            {favoriteUsers.map((favUser) => (
-              <div className={styles.post_favoriteUsers} key={favUser.id}>
-                <Avatar src={favUser.avatar} className={classes.small} />
-                <span>@{favUser.username}</span>
-                <span>
-                  {new Date(favUser.timestamp?.toDate()).toLocaleString()}
-                </span>
-              </div>
-            ))}
+            <div className={styles.post_usersArea}>
+              {favoriteUsers.map((favUser) => (
+                <div className={styles.post_favoriteUsers} key={favUser.id}>
+                  <Avatar src={favUser.avatar} className={classes.small} />
+                  <span>@{favUser.username}</span>
+                  <span>
+                    {new Date(favUser.timestamp?.toDate()).toLocaleString()}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </Modal>
       </div>

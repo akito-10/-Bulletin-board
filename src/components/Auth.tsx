@@ -226,7 +226,9 @@ const Auth: React.FC = () => {
                     try {
                       await signInEmail();
                     } catch (err) {
-                      alert(err.message);
+                      alert(
+                        "サインインに失敗しました。メールアドレスもしくはパスワードに誤りがないか確認してください。"
+                      );
                     }
                   }
                 : async () => {
