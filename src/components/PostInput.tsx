@@ -96,7 +96,7 @@ const PostInput: React.FC = () => {
           <Avatar className={styles.postInput_avatar} src={user.photoUrl} />
           <TextField
             className={classes.input}
-            label="共有したい考えを書いてみよう"
+            label="共有したい考えを投稿しよう"
             variant="outlined"
             fullWidth
             value={postText}

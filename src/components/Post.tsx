@@ -221,7 +221,7 @@ const Post: React.FC<PROPS> = (props) => {
                 ))}
               </>
             )}
-            <form onSubmit={newComment} className={classes.topMargin}>
+            <form onSubmit={newComment} className={styles.post_commentSubmit}>
               <input
                 className={styles.post_commentInput}
                 type="text"
