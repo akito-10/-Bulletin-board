@@ -4,11 +4,11 @@
 
 .postInput_addIcon {
   cursor: pointer;
-  color: dimgray;
+  color: #222;
 }
 .postInput_addIconLoaded {
   cursor: pointer;
-  color: white;
+  color: #ccc;
 }
 
 .postInput_hiddenIcon {
