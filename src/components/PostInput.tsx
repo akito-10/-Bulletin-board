@@ -40,6 +40,15 @@ const PostInput: React.FC = () => {
     }
   };
 
+  const cancelImageFile = () => {
+    if (postImage) {
+      const ret = window.confirm("選択した画像をリセットしますか？");
+      if (ret) {
+        setPostImage(null);
+      }
+    }
+  };
+
   const sendPost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (postImage) {
@@ -118,6 +127,7 @@ const PostInput: React.FC = () => {
                 className={styles.postInput_hiddenIcon}
                 type="file"
                 onChange={onChangeImageHandler}
+                onClick={cancelImageFile}
               />
             </label>
           </IconButton>
