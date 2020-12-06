@@ -139,7 +139,7 @@ const Auth: React.FC = () => {
           <LockOpenOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          {isLogin ? "Login" : "Sign In"}
+          {isLogin ? "ログイン" : "サインアップ"}
         </Typography>
         <form className={classes.form} noValidate>
           {!isLogin && (
@@ -240,7 +240,7 @@ const Auth: React.FC = () => {
                   }
             }
           >
-            {isLogin ? "Login" : "Sign In"}
+            {isLogin ? "ログイン" : "アカウント新規作成"}
           </Button>
           <Grid container>
             <Grid item xs>
@@ -269,7 +269,7 @@ const Auth: React.FC = () => {
             onClick={signInGoogle}
             className={classes.submit}
           >
-            Sign In with Google
+            Googleでログイン
           </Button>
         </form>
         <Modal open={openModal} onClose={() => setOpenModal(false)}>
