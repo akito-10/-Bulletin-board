@@ -98,6 +98,7 @@ const PostInput: React.FC = () => {
             className={classes.input}
             label="共有したい考えを投稿しよう"
             variant="outlined"
+            multiline={true}
             fullWidth
             value={postText}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
