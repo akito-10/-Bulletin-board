@@ -3,9 +3,7 @@ import Chat from "./Chat";
 import styles from "./Chats.module.css";
 
 const Chats: React.FC = () => {
-  return (
-
-  );
+  return <div></div>;
 };
 
 export default Chats;

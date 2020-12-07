@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import { db } from "../firebase/firebase";
-import styles from "./Group.module.css";
+import styles from "./TalkSet.module.css";
 
 const Group: React.FC = () => {
   const user = useSelector(selectUser);
@@ -10,7 +10,7 @@ const Group: React.FC = () => {
   const [answers, setAnswers] = useState([]);
 
   const addChatsData = () => {
-    db.collection("users").add({
+    db.collection("talks").add({
       uid: user.uid,
       question: question,
       answers: answers,
@@ -18,9 +18,10 @@ const Group: React.FC = () => {
   };
 
   return (
-    <section>
-      <div>会話を作成する！</div>
-    </section>
+    <div>
+      <h2>会話を作成する！</h2>
+      <form></form>
+    </div>
   );
 };
 

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import PostInput from "./PostInput";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import GroupIcon from "@material-ui/icons/Group";
 import { IconButton, Typography } from "@material-ui/core";
 import { auth, db } from "../firebase/firebase";
 import styles from "./Feed.module.css";
 import Post from "./Post";
+import { Link } from "react-router-dom";
 
 const Feed: React.FC = () => {
   const [posts, setPost] = useState([
@@ -42,13 +44,23 @@ const Feed: React.FC = () => {
 
   return (
     <div className={styles.feed_root}>
-      <IconButton
-        className={styles.feed_exitBtn}
-        onClick={async () => auth.signOut()}
-      >
-        <Typography component="div">Sign Out</Typography>
-        <ExitToAppIcon />
-      </IconButton>
+      <div className={styles.feed_headerBtns}>
+        <Link to="/talkset" className={styles.feed_link}>
+          <IconButton>
+            <Typography component="div" className={styles.feed_groupPram}>
+              New Talk
+            </Typography>
+            <GroupIcon />
+          </IconButton>
+        </Link>
+        <IconButton
+          className={styles.feed_exitBtn}
+          onClick={async () => auth.signOut()}
+        >
+          <Typography component="div">Sign Out</Typography>
+          <ExitToAppIcon />
+        </IconButton>
+      </div>
       <PostInput />
       {posts[0]?.postId && (
         <>

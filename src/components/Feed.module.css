@@ -1,6 +1,15 @@
-.feed_exitBtn {
-  display: block !important;
-  margin: 10px 40px 0 auto !important;
+.feed_headerBtns {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+
+.feed_link {
+  text-decoration: none;
+}
+
+.feed_groupPram {
+  margin-right: 10px !important;
 }
 
 .feed_root {
