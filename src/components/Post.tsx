@@ -92,7 +92,7 @@ const Post: React.FC<PROPS> = (props) => {
   ]);
   const [isFavorite, setIsFavorite] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [favoriteUsers, setFavoriteUser] = useState<FAVORITE[]>([
+  const [favoriteUsers, setFavoriteUsers] = useState<FAVORITE[]>([
     {
       id: "",
       avatar: "",
@@ -152,7 +152,7 @@ const Post: React.FC<PROPS> = (props) => {
       .collection("favorites")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        setFavoriteUser(
+        setFavoriteUsers(
           snapshot.docs.map((doc) => ({
             id: doc.id,
             avatar: doc.data().avatar,
