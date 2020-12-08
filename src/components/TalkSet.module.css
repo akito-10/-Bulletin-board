@@ -1,0 +1,75 @@
+.talkSet_contain {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.talkSet_link {
+  text-decoration: none;
+}
+
+.talkSet_headerPram {
+  margin-right: 10px !important;
+}
+
+.talkSet_main {
+  text-align: center;
+}
+
+.talkSet_questionArea {
+  position: relative;
+}
+
+.talkSet_answerArea {
+  position: relative;
+}
+
+.talkSet_btn {
+  background-color: #3f50b5;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+}
+
+.talkSet_btnDisable {
+  background-color: #ccc;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+}
+
+.talkSet_displayPram {
+  margin: 0;
+}
+
+.talkSet_displayQuestion {
+  margin-top: 0;
+}
+
+.talkSet_list {
+  display: inline-block;
+  text-align: left;
+  transform: translateX(-50%);
+}
+
+.talkSet_list > li {
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+.talkSet_submitBtn {
+  margin-top: 30px;
+}
+
+.mb_md {
+  margin-bottom: 20px;
+}
