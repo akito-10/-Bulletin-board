@@ -1,0 +1,33 @@
+.talkPosts_contain {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.talkPosts_link {
+  text-decoration: none;
+}
+
+.talkPosts_headerPram {
+  margin-right: 10px !important;
+}
+
+.talkPosts_content {
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.talkPosts_main {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.talkPosts_roomText {
+  color: black;
+  font-size: 1.2em;
+  margin-left: 10px;
+}

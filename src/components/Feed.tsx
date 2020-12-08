@@ -55,7 +55,7 @@ const Feed: React.FC = () => {
               <GroupAddIcon />
             </IconButton>
           </Link>
-          <Link to="/talk" className={styles.feed_link}>
+          <Link to="/talkposts" className={styles.feed_link}>
             <IconButton>
               <Typography component="div" className={styles.feed_groupPram}>
                 Users Talk
