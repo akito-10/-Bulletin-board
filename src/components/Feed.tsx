@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PostInput from "./PostInput";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import GroupIcon from "@material-ui/icons/Group";
 import { IconButton, Typography } from "@material-ui/core";
 import { auth, db } from "../firebase/firebase";
@@ -45,14 +46,24 @@ const Feed: React.FC = () => {
   return (
     <div className={styles.feed_root}>
       <div className={styles.feed_headerBtns}>
-        <Link to="/talkset" className={styles.feed_link}>
-          <IconButton>
-            <Typography component="div" className={styles.feed_groupPram}>
-              New Talk
-            </Typography>
-            <GroupIcon />
-          </IconButton>
-        </Link>
+        <div>
+          <Link to="/talkset" className={styles.feed_link}>
+            <IconButton>
+              <Typography component="div" className={styles.feed_groupPram}>
+                New Talk
+              </Typography>
+              <GroupAddIcon />
+            </IconButton>
+          </Link>
+          <Link to="/talk" className={styles.feed_link}>
+            <IconButton>
+              <Typography component="div" className={styles.feed_groupPram}>
+                Users Talk
+              </Typography>
+              <GroupIcon />
+            </IconButton>
+          </Link>
+        </div>
         <IconButton
           className={styles.feed_exitBtn}
           onClick={async () => auth.signOut()}

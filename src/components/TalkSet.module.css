@@ -66,8 +66,12 @@
   margin-bottom: 5px;
 }
 
-.talkSet_submitBtn {
+.talkSet_btns {
   margin-top: 30px;
+}
+
+.talkSet_submitBtn {
+  margin-left: 30px !important;
 }
 
 .mb_md {
