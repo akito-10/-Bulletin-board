@@ -1,6 +1,11 @@
 import React from "react";
 
-const Answers: React.FC = () => {
+interface PROPS {
+  answers: string[];
+  selectAnswer: (answer: string) => void;
+}
+
+const Answers: React.FC<PROPS> = (props) => {
   return <div></div>;
 };
 

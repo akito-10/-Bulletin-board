@@ -23,16 +23,16 @@ const TalkSet: React.FC = () => {
   const [answer, setAnswer] = useState("");
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState<string[]>([]);
-  const [datas, setDatas] = useState<DATA[]>([]);
+  const [dataList, setDataList] = useState<DATA[]>([]);
 
   const sendChatsData = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await db.collection("talks").doc(user.uid).set({
       avatar: user.photoUrl,
-      datas: datas,
+      dataList: dataList,
       username: user.displayName,
     });
-    setDatas([]);
+    setDataList([]);
   };
 
   return (
@@ -96,7 +96,7 @@ const TalkSet: React.FC = () => {
             {answers && (
               <ul className={styles.talkSet_list}>
                 {answers.map((answer, index) => (
-                  <li key={index}>{`${index + 1}.\n${answer}`}</li>
+                  <li key={index.toString()}>{`${index + 1}.\n${answer}`}</li>
                 ))}
               </ul>
             )}
@@ -106,11 +106,11 @@ const TalkSet: React.FC = () => {
               disabled={!question || !answers[0]}
               variant="contained"
               color="secondary"
-              className={styles.talkSet_dataSetBtn}
+              className={styles.talkSet_dataListetBtn}
               onClick={() => {
                 const data = { question: question, answers: answers };
-                setDatas((prevDatas) => {
-                  return [...prevDatas, data];
+                setDataList((prevDataList) => {
+                  return [...prevDataList, data];
                 });
                 setQuestion("");
                 setAnswers([]);
@@ -119,7 +119,7 @@ const TalkSet: React.FC = () => {
               この会話を設定する！
             </Button>
             <Button
-              disabled={!datas[0]}
+              disabled={!dataList[0]}
               variant="contained"
               color="primary"
               className={styles.talkSet_submitBtn}

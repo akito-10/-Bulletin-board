@@ -1,8 +1,13 @@
 import React from "react";
-import Chat from "./Chat";
+// import Chat from "./Chat";
 import styles from "./Chats.module.css";
+import { CHAT } from "./TalkRoom";
 
-const Chats: React.FC = () => {
+interface PROPS {
+  chats: CHAT[];
+}
+
+const Chats: React.FC<PROPS> = (props) => {
   return <div></div>;
 };
 

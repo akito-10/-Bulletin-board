@@ -10,7 +10,7 @@ import HomeIcon from "@material-ui/icons/Home";
 interface TALKS {
   id: string;
   avatar: string;
-  datas: string[];
+  dataList: string[];
   username: string;
 }
 
@@ -20,7 +20,7 @@ const TalkPosts: React.FC = () => {
     {
       id: "",
       avatar: "",
-      datas: [],
+      dataList: [],
       username: "",
     },
   ]);
@@ -31,7 +31,7 @@ const TalkPosts: React.FC = () => {
         snapshot.docs.map((doc) => ({
           id: doc.id,
           avatar: doc.data().avatar,
-          datas: doc.data().datas,
+          dataList: doc.data().dataList,
           username: doc.data().username,
         }))
       );
