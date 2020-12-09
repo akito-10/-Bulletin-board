@@ -1,0 +1,25 @@
+.chat_text {
+  background: #41b6e6;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  max-width: 80%;
+  width: auto;
+}
+
+.chat_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-right: 0 !important;
+}
+
+.chat_reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  padding-right: 0 !important;
+}

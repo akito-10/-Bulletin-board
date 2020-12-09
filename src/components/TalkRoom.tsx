@@ -87,7 +87,7 @@ const TalkRoom: React.FC = () => {
   return (
     <section className={styles.talkRoom_section}>
       <div className={styles.talkRoom_box}>
-        <Chats chats={chats} />
+        <Chats chats={chats} avatar={avatar} />
         <Answers answers={answers} selectAnswer={selectAnswer} />
       </div>
     </section>

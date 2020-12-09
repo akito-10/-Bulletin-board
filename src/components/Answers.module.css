@@ -1,0 +1,6 @@
+.answers_contain {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  height: 192px;
+}
