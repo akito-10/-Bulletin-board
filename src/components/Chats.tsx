@@ -1,6 +1,5 @@
 import React from "react";
 import Chat from "./Chat";
-import styles from "./Chats.module.css";
 import { CHAT } from "./TalkRoom";
 import { List } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/core";

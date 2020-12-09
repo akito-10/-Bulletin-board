@@ -26,7 +26,7 @@ const TalkPosts: React.FC = () => {
   ]);
 
   useEffect(() => {
-    db.collection("talks").onSnapshot((snapshot) => {
+    const unSub = db.collection("talks").onSnapshot((snapshot) => {
       setTalks(
         snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -36,7 +36,9 @@ const TalkPosts: React.FC = () => {
         }))
       );
     });
-  });
+
+    return () => unSub();
+  }, []);
 
   return (
     <div>
