@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectTalk } from "../features/talkSlice";
@@ -24,15 +25,16 @@ interface TALK {
 
 const TalkRoom: React.FC = () => {
   const talk = useSelector(selectTalk);
-  let currentNum: number;
-  const [talks, setTalks] = useState<TALK>({});
+  const [count, setCount] = useState<number>(0);
+  // const [talks, setTalks] = useState<TALK>({});
   const [answers, setAnswers] = useState<string[]>([]);
   const [question, setQuestion] = useState("");
   const [chats, setChats] = useState<CHAT[]>([]);
   const [avatar, setAvatar] = useState<string | undefined>("");
   const [username, setUsername] = useState<string | undefined>("");
   const [dataList, setDataList] = useState<TALKDATA[] | undefined>();
-  const [talkContents, setTalkContents] = useState<TALK>({});
+  const [isContinue, setIsContinue] = useState(true);
+  // const [talkContents, setTalkContents] = useState<TALK>({});
 
   const addChats = (chat: CHAT) => {
     setChats((prevChat) => {
@@ -45,12 +47,15 @@ const TalkRoom: React.FC = () => {
       text: answer,
       type: "answer",
     });
-    currentNum++;
-    console.log(currentNum);
+    setCount((prevCount) => {
+      return prevCount + 1;
+    });
+    console.log(count);
     if (dataList) {
-      if (currentNum < dataList.length) {
-        displayNextQuestion(dataList[currentNum]);
+      if (count < dataList.length) {
+        displayNextQuestion(dataList[count]);
       } else {
+        setIsContinue(false);
         addChats({
           text: "質問は終わり！ありがとう！！",
           type: "question",
@@ -64,10 +69,12 @@ const TalkRoom: React.FC = () => {
     if (data) {
       setQuestion(data.question);
       setAnswers(data.answers);
-      addChats({
-        text: question,
-        type: "question",
-      });
+      setTimeout(() => {
+        addChats({
+          text: question,
+          type: "question",
+        });
+      }, 500);
     }
   };
 
@@ -84,11 +91,10 @@ const TalkRoom: React.FC = () => {
           setUsername(snapshot.data()?.username);
           const len = snapshot.data()?.dataList.length;
           for (let i = 0; i < len; i++) {
-            // エラーがでた記述↓
             initData[i] = snapshot.data()?.dataList[i];
           }
-          currentNum = 0;
-          displayNextQuestion(initData[currentNum]);
+          displayNextQuestion(initData[count]);
+          setDataList(initData);
         }
       });
 
@@ -111,8 +117,16 @@ const TalkRoom: React.FC = () => {
   return (
     <section className={styles.talkRoom_section}>
       <div className={styles.talkRoom_box}>
+        <div className={styles.talkRoom_header}>
+          <Link to="talkposts" className={styles.talkRoom_link}>
+            ←戻る
+          </Link>
+          <p className={styles.talkRoom_username}>@{username}</p>
+        </div>
         <Chats chats={chats} avatar={avatar} />
-        <Answers answers={answers} selectAnswer={selectAnswer} />
+        {isContinue && (
+          <Answers answers={answers} selectAnswer={selectAnswer} />
+        )}
       </div>
     </section>
   );

@@ -11,12 +11,12 @@ interface PROPS {
 const useStyles = makeStyles(() =>
   createStyles({
     button: {
-      borderColor: "#FFB549",
-      color: "#FFB549",
+      borderColor: "#41b6e6",
+      color: "#41b6e6",
       fontWeight: 600,
       marginBottom: "8px",
       "&:hover": {
-        backgroundColor: "#FFB549",
+        backgroundColor: "#41b6e6",
         color: "#fff",
       },
     },

@@ -18,3 +18,19 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.talkRoom_header {
+  display: flex;
+  height: 50px;
+}
+
+.talkRoom_link {
+  line-height: 50px;
+  text-decoration: none;
+  color: #222;
+  margin-right: 20px;
+}
+
+.talkRoom_username {
+  font-size: 1.4em;
+}

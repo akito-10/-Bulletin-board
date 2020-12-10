@@ -12,7 +12,7 @@ interface PROPS {
 const useStyles = makeStyles(() =>
   createStyles({
     chats: {
-      height: 400,
+      height: 350,
       padding: "0",
       overflow: "auto",
     },
