@@ -1,4 +1,3 @@
-import { type } from "os";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectTalk } from "../features/talkSlice";
@@ -30,9 +29,9 @@ const TalkRoom: React.FC = () => {
   const [answers, setAnswers] = useState<string[]>([]);
   const [question, setQuestion] = useState("");
   const [chats, setChats] = useState<CHAT[]>([]);
-  // const [avatar, setAvatar] = useState<string | undefined>("");
-  // const [username, setUsername] = useState<string | undefined>("");
-  // const [dataList, setDataList] = useState<TALKDATA[] | undefined>();
+  const [avatar, setAvatar] = useState<string | undefined>("");
+  const [username, setUsername] = useState<string | undefined>("");
+  const [dataList, setDataList] = useState<TALKDATA[] | undefined>();
   const [talkContents, setTalkContents] = useState<TALK>({});
 
   const addChats = (chat: CHAT) => {
@@ -50,7 +49,7 @@ const TalkRoom: React.FC = () => {
     console.log(currentNum);
     if (dataList) {
       if (currentNum < dataList.length) {
-        displayNextQuestion();
+        displayNextQuestion(dataList[currentNum]);
       } else {
         addChats({
           text: "質問は終わり！ありがとう！！",
@@ -60,11 +59,11 @@ const TalkRoom: React.FC = () => {
     }
   };
 
-  const displayNextQuestion = () => {
-    console.log(dataList);
-    if (dataList) {
-      setQuestion(dataList[currentNum].question);
-      setAnswers(dataList[currentNum].answers);
+  const displayNextQuestion = (data: TALKDATA) => {
+    console.log(data);
+    if (data) {
+      setQuestion(data.question);
+      setAnswers(data.answers);
       addChats({
         text: question,
         type: "question",
@@ -74,14 +73,22 @@ const TalkRoom: React.FC = () => {
 
   useEffect(() => {
     let unmounted = false;
+    const initData: TALKDATA[] = [];
 
     db.collection("talks")
       .doc(talk.tid)
       .get()
       .then((snapshot) => {
         if (!unmounted) {
-          const talk = snapshot.data() as TALK;
-          setTalks(talk);
+          setAvatar(snapshot.data()?.avatar);
+          setUsername(snapshot.data()?.username);
+          const len = snapshot.data()?.dataList.length;
+          for (let i = 0; i < len; i++) {
+            // エラーがでた記述↓
+            initData[i] = snapshot.data()?.dataList[i];
+          }
+          currentNum = 0;
+          displayNextQuestion(initData[currentNum]);
         }
       });
 
@@ -92,13 +99,6 @@ const TalkRoom: React.FC = () => {
     return () => {
       unmount();
     };
-  }, []);
-
-  const { avatar, username, dataList } = talks;
-
-  useEffect(() => {
-    currentNum = 0;
-    displayNextQuestion();
   }, []);
 
   useEffect(() => {
