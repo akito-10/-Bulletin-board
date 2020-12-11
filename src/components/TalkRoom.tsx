@@ -26,15 +26,19 @@ interface TALK {
 const TalkRoom: React.FC = () => {
   const talk = useSelector(selectTalk);
   const [count, setCount] = useState<number>(0);
-  // const [talks, setTalks] = useState<TALK>({});
-  const [answers, setAnswers] = useState<string[]>([]);
-  const [question, setQuestion] = useState("");
+  const [answers, setAnswers] = useState<string[]>([
+    "こんにちは",
+    "やあ！",
+    "よろしく！",
+    "初めまして",
+  ]);
+  const [question, setQuestion] = useState("やあ！");
   const [chats, setChats] = useState<CHAT[]>([]);
   const [avatar, setAvatar] = useState<string | undefined>("");
   const [username, setUsername] = useState<string | undefined>("");
   const [dataList, setDataList] = useState<TALKDATA[] | undefined>();
   const [isContinue, setIsContinue] = useState(true);
-  // const [talkContents, setTalkContents] = useState<TALK>({});
+  const [isStart, setIsStart] = useState(false);
 
   const addChats = (chat: CHAT) => {
     setChats((prevChat) => {
@@ -70,12 +74,15 @@ const TalkRoom: React.FC = () => {
     console.log(data);
     if (data) {
       setQuestion(data.question);
-      setAnswers(data.answers);
+      if (isStart) {
+        setAnswers(data.answers);
+      }
       setTimeout(() => {
         addChats({
           text: question,
           type: "question",
         });
+        setIsStart(true);
       }, 500);
     }
   };
