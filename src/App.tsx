@@ -6,7 +6,7 @@ import { auth } from "./firebase/firebase";
 import Feed from "./components/Feed";
 import Auth from "./components/Auth";
 
-const App: React.FC = (props) => {
+const App: React.FC = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 

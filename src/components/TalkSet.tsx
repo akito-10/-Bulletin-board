@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import { db } from "../firebase/firebase";
-import {
-  IconButton,
-  TextField,
-  Typography,
-  Button,
-  Avatar,
-} from "@material-ui/core";
+import { IconButton, TextField, Typography, Button } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import styles from "./TalkSet.module.css";
 import { Link } from "react-router-dom";

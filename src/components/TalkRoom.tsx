@@ -12,7 +12,7 @@ export interface CHAT {
   type: string;
 }
 
-interface TALKDATA {
+interface TALK＿DATA {
   answers: string[];
   question: string;
 }
@@ -20,7 +20,7 @@ interface TALKDATA {
 interface TALK {
   avatar?: string;
   username?: string;
-  dataList?: TALKDATA[];
+  dataList?: TALK＿DATA[];
 }
 
 const TalkRoom: React.FC = () => {
@@ -36,7 +36,7 @@ const TalkRoom: React.FC = () => {
   const [chats, setChats] = useState<CHAT[]>([]);
   const [avatar, setAvatar] = useState<string | undefined>("");
   const [username, setUsername] = useState<string | undefined>("");
-  const [dataList, setDataList] = useState<TALKDATA[] | undefined>();
+  const [dataList, setDataList] = useState<TALK＿DATA[] | undefined>();
   const [isContinue, setIsContinue] = useState(true);
   const [isStart, setIsStart] = useState(false);
 
@@ -54,7 +54,7 @@ const TalkRoom: React.FC = () => {
     setCount((prevCount) => {
       return prevCount + 1;
     });
-    console.log(count);
+    console.log(count + "count");
     if (dataList) {
       if (count < dataList.length) {
         displayNextQuestion(dataList[count]);
@@ -70,26 +70,28 @@ const TalkRoom: React.FC = () => {
     }
   };
 
-  const displayNextQuestion = (data: TALKDATA) => {
+  const displayNextQuestion = (data: TALK＿DATA) => {
     console.log(data);
     if (data) {
       setQuestion(data.question);
       if (isStart) {
+        console.log(data.question + "ifの中");
         setAnswers(data.answers);
       }
+      setIsStart(true);
       setTimeout(() => {
+        console.log(question + "質問文");
         addChats({
           text: question,
           type: "question",
         });
-        setIsStart(true);
       }, 500);
     }
   };
 
   useEffect(() => {
     let unmounted = false;
-    const initData: TALKDATA[] = [];
+    const initData: TALK＿DATA[] = [];
 
     db.collection("talks")
       .doc(talk.tid)
