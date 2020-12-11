@@ -77,3 +77,15 @@
 .mb_md {
   margin-bottom: 20px;
 }
+
+@media screen and (max-width: 370px) {
+  .talkSet_btns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .talkSet_submitBtn {
+    margin-left: 0 !important;
+    margin-top: 30px !important;
+  }
+}
