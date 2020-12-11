@@ -56,10 +56,12 @@ const TalkRoom: React.FC = () => {
         displayNextQuestion(dataList[count]);
       } else {
         setIsContinue(false);
-        addChats({
-          text: "質問は終わり！ありがとう！！",
-          type: "question",
-        });
+        setTimeout(() => {
+          addChats({
+            text: "質問は終わり！ありがとう！！",
+            type: "question",
+          });
+        }, 500);
       }
     }
   };
