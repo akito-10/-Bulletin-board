@@ -163,11 +163,31 @@ const Post: React.FC<PROPS> = (props) => {
       });
   };
 
+  const deletePost = () => {
+    if (user.uid === props.userId) {
+      if (window.confirm("この投稿を削除しますか？")) {
+        db.collection("posts")
+          .doc(props.postId)
+          .delete()
+          .then(() => {
+            console.log("Document successfully deleted!");
+          })
+          .catch((error) => {
+            console.error("Error removing document: ", error);
+          });
+      }
+    }
+  };
+
   return (
     <div className={classes.post}>
       <div className={styles.post_content}>
         <div className={classes.topMargin}>
-          <Avatar src={props.avatar} className={classes.rightMargin} />
+          <Avatar
+            src={props.avatar}
+            className={classes.rightMargin}
+            onClick={deletePost}
+          />
         </div>
         <div className={styles.post_main}>
           <div>

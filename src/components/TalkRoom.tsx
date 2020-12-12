@@ -17,28 +17,15 @@ interface TALK＿DATA {
   question: string;
 }
 
-interface TALK {
-  avatar?: string;
-  username?: string;
-  dataList?: TALK＿DATA[];
-}
-
 const TalkRoom: React.FC = () => {
   const talk = useSelector(selectTalk);
-  const [count, setCount] = useState<number>(0);
-  const [answers, setAnswers] = useState<string[]>([
-    "こんにちは",
-    "やあ！",
-    "よろしく！",
-    "初めまして",
-  ]);
-  const [question, setQuestion] = useState("やあ！");
+  const [count, setCount] = useState<number>(1);
+  const [answers, setAnswers] = useState<string[]>([]);
   const [chats, setChats] = useState<CHAT[]>([]);
   const [avatar, setAvatar] = useState<string | undefined>("");
   const [username, setUsername] = useState<string | undefined>("");
   const [dataList, setDataList] = useState<TALK＿DATA[] | undefined>();
   const [isContinue, setIsContinue] = useState(true);
-  const [isStart, setIsStart] = useState(false);
 
   const addChats = (chat: CHAT) => {
     setChats((prevChat) => {
@@ -73,18 +60,12 @@ const TalkRoom: React.FC = () => {
   const displayNextQuestion = (data: TALK＿DATA) => {
     console.log(data);
     if (data) {
-      setQuestion(data.question);
-      if (isStart) {
-        console.log(data.question + "ifの中");
-        setAnswers(data.answers);
-      }
-      setIsStart(true);
       setTimeout(() => {
-        console.log(question + "質問文");
         addChats({
-          text: question,
+          text: data.question,
           type: "question",
         });
+        setAnswers(data.answers);
       }, 500);
     }
   };
@@ -104,7 +85,7 @@ const TalkRoom: React.FC = () => {
           for (let i = 0; i < len; i++) {
             initData[i] = snapshot.data()?.dataList[i];
           }
-          displayNextQuestion(initData[count]);
+          displayNextQuestion(initData[0]);
           setDataList(initData);
         }
       });
