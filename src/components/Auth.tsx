@@ -206,6 +206,8 @@ const Auth: React.FC = () => {
             id="password"
             autoComplete="current-password"
             value={password}
+            error={password.length < 6 && password !== ""}
+            helperText="パスワードは6文字以上です。"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setPassword(e.target.value);
             }}
