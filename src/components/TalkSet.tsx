@@ -46,7 +46,7 @@ const TalkSet: React.FC = () => {
             <TextField
               fullWidth
               variant="outlined"
-              label="質問したい事を書いてね"
+              label="（自分）質問したい事を書いてね"
               value={question}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setQuestion(e.target.value);
@@ -58,7 +58,7 @@ const TalkSet: React.FC = () => {
             <TextField
               fullWidth
               variant="outlined"
-              label="回答の選択肢を書こう"
+              label="（相手）回答の選択肢を書こう"
               value={answer}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setAnswer(e.target.value);
